@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 
 {
+    
 
     private $tasks;
 
@@ -112,14 +113,34 @@ class TaskController extends Controller
     public function index()
 
     {
+    
+        $pageTitle = 'Task List'; // Ditambahkan
+    
+        $tasks = $this->tasks;
+    
+        return view('tasks.index', [
+    
+            'pageTitle' => $pageTitle, //Ditambahkan
+    
+            'tasks' => $tasks,
+    
+        ]);
+    
+    }
+    public function edit($id)
+
+    {
+
+        $pageTitle = 'Edit Task';
 
         $tasks = $this->tasks;
 
-        return view('tasks.index', ['tasks' => $tasks]);
+
+        $task = $tasks[$id - 1];
+
+
+        return view('tasks.edit', ['pageTitle' => $pageTitle, 'task' => $task]);
 
     }
-
+    
 }
-
-
-
